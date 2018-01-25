@@ -83,7 +83,7 @@ void loop(){
   char temp[20];
   int i = 0, xcoordint, ycoordint, pwmr = 0, pwml = 0;
 
-  setSpeed(pwmr pwml);
+  setSpeed(pwmr, pwml);
 
   if (rf69.available()) {
       uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
@@ -113,7 +113,7 @@ void loop(){
         pwmr = (int) ycoordint * 255;  //***just going to code it to do turns for now, will add rotation functionality later***
         pwmr /= (int) JOYSTICK_RANGE;
         pwml = pwmr;
-        if(xcoorint > JOYSTICK_RANGE/2) pwmr -= (int) (xcoordint * 255)/JOYSTICK_RANGE;
+        if(xcoordint > JOYSTICK_RANGE/2) pwmr -= (int) (xcoordint * 255)/JOYSTICK_RANGE;
         else if(xcoordint < JOYSTICK_RANGE/2) pwml -= (int) (xcoordint * 255)/JOYSTICK_RANGE;
 
         digitalWrite(13, HIGH);
