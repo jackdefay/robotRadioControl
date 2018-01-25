@@ -82,8 +82,7 @@ void loop(){
   String word, xcoord, ycoord;
   char temp[20];
   int i = 0, xcoordint, ycoordint, pwmr = 0, pwml = 0;
-
-  setSpeed(pwmr, pwml);
+  static unsigned long previousMillis = 0, currentMillis = 0;
 
   if (rf69.available()) {
       uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
@@ -116,6 +115,9 @@ void loop(){
         if(xcoordint > JOYSTICK_RANGE/2) pwmr -= (int) (xcoordint * 255)/JOYSTICK_RANGE;
         else if(xcoordint < JOYSTICK_RANGE/2) pwml -= (int) (xcoordint * 255)/JOYSTICK_RANGE;
 
+        setSpeed(pwmr, pwml);
+        previousMills = millis();
+
         digitalWrite(13, HIGH);
       }
 
@@ -124,6 +126,9 @@ void loop(){
       }
    }
    else digitalWrite(13, LOW);
+
+   currentMillis = millis();
+   if(currentMillis - previousMillis > 100) setSpeed(0, 0);
 }
 
 void setDirection(char motor, bool direction){  //1 = forwards, 0 = backwards
