@@ -66,7 +66,7 @@ void setup() {
   digitalWrite(13, LOW);
 }
 
-int last_x = 0, last_y = 0;
+//int last_x = 0, last_y = 0;
 void loop() {
   char radiopacket[20];
   char temp[5];
@@ -74,10 +74,10 @@ void loop() {
   int x = ss.analogRead(2);
   int y = ss.analogRead(3);
 
-  if ( (abs(x - last_x) > 3)  ||  (abs(y - last_y) > 3)) {
+  //if ( (abs(x - last_x) > 3)  ||  (abs(y - last_y) > 3)) {
       Serial.print(x); Serial.print(", "); Serial.println(y);
-      last_x = x;
-      last_y = y;
+      //last_x = x;
+      //last_y = y;
       itoa((int) x, temp, 10);
       tempWord = temp;
       tempWord += "* ";
@@ -95,9 +95,9 @@ void loop() {
       //itoa((int) y, radiopacket, 6);
       rf69.send((uint8_t *)radiopacket, strlen(radiopacket));
       rf69.waitPacketSent();
-  }
+  //}
 
-  if(!digitalRead(IRQ_PIN)){
+  /*if(!digitalRead(IRQ_PIN)){
     uint32_t buttons = ss.digitalReadBulk(button_mask);
     //Serial.println(buttons, BIN);
     if (! (buttons & (1 << BUTTON_RIGHT))) {
