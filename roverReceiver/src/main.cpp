@@ -1,10 +1,6 @@
 #include <Arduino.h>
 #include <SPI.h>
 #include <RH_RF69.h>
-#include <Adafruit_NeoPixel.h>
-#ifdef __AVR__
-  #include <avr/power.h>
-#endif
 
 #define PIN 5
 
@@ -16,10 +12,6 @@
   #define LED           13
 
 RH_RF69 rf69(RFM69_CS, RFM69_INT);
-
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(3, PIN, NEO_RGBW + NEO_KHZ800);
-
-void blink(char color, unsigned int waitTime);
 
 void setup() {
   Serial.begin(115200);
@@ -49,9 +41,6 @@ void setup() {
   rf69.setEncryptionKey(key);
 
   pinMode(LED, OUTPUT);
-
-  strip.begin();
-  strip.show(); // Initialize all pixels to 'off'
 }
 void loop(){
   String word, xcoord, ycoord;
@@ -104,28 +93,4 @@ void loop(){
       }
    }
    else digitalWrite(13, LOW);
-}
-
-void blink(char color, unsigned int waitTime){
-
-  uint32_t c = 0;
-
-  if(color == 'r') c = strip.Color(0, 255, 0);  //red
-  else if(color == 'w') c = strip.Color(0, 0, 0, 255);  //white
-  else if(color == 'b') c = strip.Color(0, 0, 255);  //blue
-  else if(color == 'g') c = strip.Color(255, 0, 0);  //green
-
-  for(unsigned int i=0; i<strip.numPixels(); i++){
-    strip.setPixelColor(i, c);
-    strip.show();
-    //delay(50);
-  }
-
-  delay(waitTime);
-
-  for(unsigned int i=0; i<strip.numPixels(); i++){
-    strip.setPixelColor(i, strip.Color(0, 0, 0));
-    strip.show();
-    //delay(50);
-  }
 }
