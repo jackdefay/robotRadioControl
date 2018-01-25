@@ -116,7 +116,7 @@ void loop(){
         else if(xcoordint < JOYSTICK_RANGE/2) pwml -= (int) (xcoordint * 255)/JOYSTICK_RANGE;
 
         setSpeed(pwmr, pwml);
-        previousMills = millis();
+        previousMillis = millis();
 
         digitalWrite(13, HIGH);
       }
