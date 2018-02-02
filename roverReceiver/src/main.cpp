@@ -15,14 +15,14 @@
 
 RH_RF69 rf69(RFM69_CS, RFM69_INT);
 
-#define rfpos 2
-#define rfneg 4
-#define rbpos 7
-#define rbneg 8
-#define lfpos 10
-#define lfneg 11
-#define lbpos 12
-#define lbneg 13
+#define rfpos A5
+#define rfneg A2
+#define rbpos A1
+#define rbneg 5
+#define lfpos 11
+#define lfneg 10
+#define lbpos 9
+#define lbneg 63
 
 #define pwmrf 13
 #define pwmrb 12
@@ -116,6 +116,7 @@ void loop(){
         else if(xcoordint < JOYSTICK_RANGE/2) pwml -= (int) (xcoordint * 255)/JOYSTICK_RANGE;
 
         setSpeed(pwmr, pwml);
+        Serial.print(pwmr); Serial.print(", "); Serial.println(pwml);
         previousMillis = millis();
 
         digitalWrite(13, HIGH);
