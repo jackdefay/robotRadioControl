@@ -29,7 +29,7 @@ int pwmrb = 5;
 int pwmlf = 6;
 int pwmlb = 9;
 
-void setDirection(char motor, int direction);
+void setDirection(char motor, bool direction);
 void setSpeed(int pwmr, int pwml);
 
 void setup() {
@@ -74,8 +74,8 @@ void setup() {
   pinMode(pwmlf, OUTPUT);
   pinMode(pwmlb, OUTPUT);
 
-  setDirection('r', true);
-  setDirection('l', true);
+  setDirection('r', 1);
+  setDirection('l', 1);
 }
 
 void loop(){
