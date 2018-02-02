@@ -74,8 +74,8 @@ void setup() {
   pinMode(pwmlf, OUTPUT);
   pinMode(pwmlb, OUTPUT);
 
-  setDirection('r', 1);
-  setDirection('l', 1);
+  setDirection('r', true);
+  setDirection('l', true);
 }
 
 void loop(){
