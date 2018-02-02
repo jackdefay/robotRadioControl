@@ -24,10 +24,10 @@ RH_RF69 rf69(RFM69_CS, RFM69_INT);
 #define lbpos 12
 #define lbneg 13
 
-int pwmrf = 3;
-int pwmrb = 5;
-int pwmlf = 6;
-int pwmlb = 9;
+#define pwmrf 13
+#define pwmrb 12
+#define pwmlf A3
+#define pwmlb A4
 
 void setDirection(char motor, bool direction);
 void setSpeed(int pwmr, int pwml);
