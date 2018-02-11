@@ -126,7 +126,7 @@ void loop() {
     }
     //else itoa((int) 0, radiopacket, 17);
   }
-  /*else{
+  else{
     itoa((int) 0, radiopacket, 9);
     itoa((int) 0, radiopacket, 11);
     itoa((int) 0, radiopacket, 13);

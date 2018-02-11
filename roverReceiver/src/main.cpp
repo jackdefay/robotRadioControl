@@ -4,7 +4,7 @@
 
 #define JOYSTICK_RANGE 1020
 
-#define PIN 5
+//#define PIN 5
 
 /*#define RF69_FREQ 900.0
 
@@ -86,6 +86,7 @@ void loop(){
   //char temp[20];
   int i = 0, xcoordint, ycoordint, pwmr = 0, pwml = 0;
 //  static unsigned long previousMillis = 0, currentMillis = 0;
+static int counter = 0;
 
 /*  if (rf69.available()) {
       uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
@@ -98,6 +99,7 @@ void loop(){
           temp[i] = (char) buf[i];
         }
         word = temp;*/
+        i = 0;
         word = "500* 500*";
         while(word.charAt(i) != '*'){
           if(word.charAt(i) >= '0' && word.charAt(i) <= '9') xcoord += word.charAt(i);
@@ -119,7 +121,7 @@ void loop(){
         if(xcoordint > JOYSTICK_RANGE/2) pwmr -= (int) (xcoordint * 255)/JOYSTICK_RANGE;
         else if(xcoordint < JOYSTICK_RANGE/2) pwml -= (int) (xcoordint * 255)/JOYSTICK_RANGE;
 
-        //setSpeed(pwmr, pwml);
+        setSpeed(pwmr, pwml);
         Serial.print(pwmr); Serial.print(", "); Serial.println(pwml);
         //previousMillis = millis();
 
@@ -138,6 +140,7 @@ void loop(){
    //currentMillis = millis();
    //if(currentMillis - previousMillis > 100) setSpeed(0, 0);
    delay(100);
+   Serial.println(counter);
 }
 
 void setDirection(char motor, bool direction){  //1 = forwards, 0 = backwards
