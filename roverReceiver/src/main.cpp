@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <SPI.h>
-#include <RH_RF69.h>
+//#include <RH_RF69.h>
 
 #define JOYSTICK_RANGE 1020
 
@@ -29,8 +29,8 @@ RH_RF69 rf69(RFM69_CS, RFM69_INT);*/
 #define pwmlf A3
 #define pwmlb A4
 
-void setDirection(char motor, bool direction);
-void setSpeed(int pwmr, int pwml);
+// void setDirection(char motor, bool direction);
+// void setSpeed(int pwmr, int pwml);
 
 void setup() {
   Serial.begin(115200);
@@ -76,15 +76,15 @@ void setup() {
   pinMode(pwmlf, OUTPUT);
   pinMode(pwmlb, OUTPUT);
 
-  setDirection('r', 1);
-  setDirection('l', 1);
+  // setDirection('r', 1);
+  // setDirection('l', 1);
 
 }
 
 void loop(){
   String word, xcoord, ycoord;
   //char temp[20];
-  int i = 0, xcoordint, ycoordint, pwmr = 0, pwml = 0;
+  int i = 0, xcoordint, ycoordint;//, pwmr = 0, pwml = 0;
 //  static unsigned long previousMillis = 0, currentMillis = 0;
 static int counter = 0;
 
@@ -143,25 +143,25 @@ static int counter = 0;
    Serial.println(counter);
 }
 
-void setDirection(char motor, bool direction){  //1 = forwards, 0 = backwards
-  Serial.println("In function setDirection");
-  if(motor == 'r'){
-    digitalWrite(rfpos, (int) direction);
-    digitalWrite(rfneg, (int) !direction);
-    digitalWrite(rbpos, (int) direction);
-    digitalWrite(rbneg, (int) !direction);
-  }
-  else if(motor == 'l'){                        //the left wheels are reversed
-    digitalWrite(lfpos, (int) !direction);
-    digitalWrite(lfneg, (int) direction);
-    digitalWrite(lbpos, (int) !direction);
-    digitalWrite(lbneg, (int) direction);
-  }
-}
-
-void setSpeed(int pwmr, int pwml){
-  analogWrite(pwmrf, pwmr);
-  analogWrite(pwmrb, pwmr);
-  analogWrite(pwmlf, pwml);
-  analogWrite(pwmlb, pwml);
-}
+// void setDirection(char motor, bool direction){  //1 = forwards, 0 = backwards
+//   Serial.println("In function setDirection");
+//   if(motor == 'r'){
+//     digitalWrite(rfpos, (int) direction);
+//     digitalWrite(rfneg, (int) !direction);
+//     digitalWrite(rbpos, (int) direction);
+//     digitalWrite(rbneg, (int) !direction);
+//   }
+//   else if(motor == 'l'){                        //the left wheels are reversed
+//     digitalWrite(lfpos, (int) !direction);
+//     digitalWrite(lfneg, (int) direction);
+//     digitalWrite(lbpos, (int) !direction);
+//     digitalWrite(lbneg, (int) direction);
+//   }
+// }
+//
+// void setSpeed(int pwmr, int pwml){
+//   analogWrite(pwmrf, pwmr);
+//   analogWrite(pwmrb, pwmr);
+//   analogWrite(pwmlf, pwml);
+//   analogWrite(pwmlb, pwml);
+// }
