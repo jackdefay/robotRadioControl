@@ -115,14 +115,14 @@ static int counter = 0;
         Serial.print(xcoordint); Serial.print(", "); Serial.println(ycoordint);
 
         //set pwm levels for writing to motors!
-        pwmr = (int) ycoordint * 255;  //***just going to code it to do turns for now, will add rotation functionality later***
-        pwmr /= (int) JOYSTICK_RANGE;
-        pwml = pwmr;
-        if(xcoordint > JOYSTICK_RANGE/2) pwmr -= (int) (xcoordint * 255)/JOYSTICK_RANGE;
-        else if(xcoordint < JOYSTICK_RANGE/2) pwml -= (int) (xcoordint * 255)/JOYSTICK_RANGE;
-
-        setSpeed(pwmr, pwml);
-        Serial.print(pwmr); Serial.print(", "); Serial.println(pwml);
+        // pwmr = (int) ycoordint * 255;  //***just going to code it to do turns for now, will add rotation functionality later***
+        // pwmr /= (int) JOYSTICK_RANGE;
+        // pwml = pwmr;
+        // if(xcoordint > JOYSTICK_RANGE/2) pwmr -= (int) (xcoordint * 255)/JOYSTICK_RANGE;
+        // else if(xcoordint < JOYSTICK_RANGE/2) pwml -= (int) (xcoordint * 255)/JOYSTICK_RANGE;
+        //
+        // setSpeed(pwmr, pwml);
+        // Serial.print(pwmr); Serial.print(", "); Serial.println(pwml);
         //previousMillis = millis();
 
         //digitalWrite(13, HIGH);
